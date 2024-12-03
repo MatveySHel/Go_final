@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  description: Booking Server API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Booking Server API
+  version: "0.1"
+  contact:
+    name: Booking Server API
+
+servers:
+  - url: http://localhost:8081/
+    description: Booking Server API
+
+components:
+  schemas:
+
+    Booking:
+      description: Bookings
+      type: object
+      properties:
+        id:
+          description: ID
+          type: integer
+        client:
+          description: Клиент
+          type: string
+        hotel:
+          description: Название отеля
+          type: string
+        checkIn:
+          description: дата заселения
+          type: string
+          format: date
+        checkOut:
+          description: дата отъезда
+          type: string
+          format: date
+
+    Error:
+      description: Сообщение об ошибках
+      type: object
+      properties:
+        message:
+          type: string
+
+paths:
+  /booking:
+    get:
+      summary: Получить массив с информацией о бронированиях Клиента
+      operationId: GetClientBookingList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client:
+                  description: Имя клиента
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Создать новое бронирование
+      operationId: CreateNewBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client:
+                  description: Клиент
+                  type: string
+                hotel:
+                  description: Название отеля
+                  type: string
+                checkIn:
+                  description: дата заселения
+                  type: string
+                  format: date
+                checkOut:
+                  description: дата отъезда
+                  type: string
+                  format: date
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  booking:
+                    description: бронирование
+                    $ref: "#/components/schemas/Booking"
+                  price:
+                    description: стоимость
+                    type: integer
+
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /bookings:
+    get:
+      summary: Получить массив с информацией о бронированиях Отеля
+      operationId: GetHotelBookingList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  description: Название отеля
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
