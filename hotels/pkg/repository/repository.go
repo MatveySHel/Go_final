@@ -54,18 +54,11 @@ func (r *Repository) GetHotelsList(ctx context.Context) (*[]domain.Hotel, error)
     }
     defer rows.Close()
 
-    var hotels []domain.Hotel
-    // Iterate over the retrieved rows and scan each row into a Book struct.
-    for rows.Next() {
-        var hotel domain.Hotel
-        err := rows.Scan(&hotel.Name)
-        if err != nil {
-            log.Printf("Error Fetching Hotel Details")
-            return &hotels, err
-        }
-        fmt.Println("hotel: ", hotel)
-        hotels = append(hotels, hotel)
+    hotels, err := pgx.CollectRows(rows, pgx.RowToStructByName[domain.Hotel])
+    if err != nil {
+        fmt.Printf("CollectRows error: %v", err)
     }
+    
     return &hotels, nil
 }
 
