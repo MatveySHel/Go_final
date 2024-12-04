@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  description: Hotels Server API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Hotels Server API
+  version: "0.1"
+  contact:
+    name: Hotels Server API
+
+servers:
+  - url: http://localhost:8080/
+    description: Hotels Server API
+
+components:
+  schemas:
+
+    Hotel:
+      description: Hotel
+      type: object
+      properties:
+        id:
+          description: ID
+          type: integer
+        name:
+          description: Название отеля
+          type: string
+        price:
+          description: Цена
+          type: integer
+        city:
+          description: Город
+          type: string
+    Error:
+      description: Сообщение об ошибках
+      type: object
+      properties:
+        message:
+          type: string
+
+paths:
+  /hotels:
+    get:
+      summary: Получить массив с информацией об отеллях
+      operationId: GetHotelsList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Hotel'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Создать новый отель
+      operationId: CreateNewHotel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Название отеля
+                  type: string
+                price:
+                  description: Цена
+                  type: integer
+                city:
+                  description: Город
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Hotel"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Изменение информации об отеле
+      operationId: EditHotel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: Название отеля
+                  type: string
+                price:
+                  description: Цена
+                  type: integer
+                city:
+                  description: Город
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Hotel"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
