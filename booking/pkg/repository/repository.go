@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/ArtemShamro/Go_Booking/booking/domain"
+	"github.com/MatveyShel/Go_final/booking/domain"
 	"github.com/jackc/pgx/v5"
 )
 

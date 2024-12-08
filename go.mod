@@ -1,4 +1,4 @@
-module github.com/ArtemShamro/Go_Booking
+module github.com/MatveyShel/Go_final
 
 go 1.23.1
 

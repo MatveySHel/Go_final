@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/ArtemShamro/Go_Booking/pkg/pb"
+	"github.com/MatveyShel/Go_final/pkg/pb"
 )
 
 // type RpcMessager interface {

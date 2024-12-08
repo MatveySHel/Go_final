@@ -7,9 +7,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ArtemShamro/Go_Booking/hotels/app"
-	"github.com/ArtemShamro/Go_Booking/hotels/domain"
-	"github.com/ArtemShamro/Go_Booking/pkg/pb"
+	"github.com/MatveyShel/Go_final/hotels/app"
+	"github.com/MatveyShel/Go_final/hotels/domain"
+	"github.com/MatveyShel/Go_final/pkg/pb"
 )
 
 type HotelServer struct {

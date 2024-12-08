@@ -7,9 +7,9 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/ArtemShamro/Go_Booking/hotels/ini"
-	"github.com/ArtemShamro/Go_Booking/hotels/pkg/api"
-	"github.com/ArtemShamro/Go_Booking/pkg/pb"
+	"github.com/MatveyShel/Go_final/hotels/ini"
+	"github.com/MatveyShel/Go_final/hotels/pkg/api"
+	"github.com/MatveyShel/Go_final/pkg/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

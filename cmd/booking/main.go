@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/ArtemShamro/Go_Booking/booking/pkg/api"
+	"github.com/MatveyShel/Go_final/booking/pkg/api"
 )
 
 func main() {

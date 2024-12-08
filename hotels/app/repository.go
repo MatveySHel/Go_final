@@ -3,7 +3,7 @@ package app
 import (
 	"context"
 
-	"github.com/ArtemShamro/Go_Booking/hotels/domain"
+	"github.com/MatveyShel/Go_final/hotels/domain"
 )
 
 type Repository interface {

@@ -7,12 +7,12 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ArtemShamro/Go_Booking/booking/app"
-	"github.com/ArtemShamro/Go_Booking/booking/domain"
-	"github.com/ArtemShamro/Go_Booking/booking/pkg/msger"
-	"github.com/ArtemShamro/Go_Booking/booking/pkg/repository"
-	"github.com/ArtemShamro/Go_Booking/db"
-	"github.com/ArtemShamro/Go_Booking/pkg/pb"
+	"github.com/MatveyShel/Go_final/booking/app"
+	"github.com/MatveyShel/Go_final/booking/domain"
+	"github.com/MatveyShel/Go_final/booking/pkg/msger"
+	"github.com/MatveyShel/Go_final/booking/pkg/repository"
+	"github.com/MatveyShel/Go_final/db"
+	"github.com/MatveyShel/Go_final/pkg/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

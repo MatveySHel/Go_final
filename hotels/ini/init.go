@@ -6,9 +6,9 @@ import (
 	"context"
 	"log"
 
-	"github.com/ArtemShamro/Go_Booking/db"
-	"github.com/ArtemShamro/Go_Booking/hotels/app"
-	"github.com/ArtemShamro/Go_Booking/hotels/pkg/repository"
+	"github.com/MatveyShel/Go_final/db"
+	"github.com/MatveyShel/Go_final/hotels/app"
+	"github.com/MatveyShel/Go_final/hotels/pkg/repository"
 )
 
 type HotelService struct {
@@ -21,7 +21,7 @@ func NewHotelService() *HotelService {
 
 func (a *HotelService) Init(ctx context.Context) (*app.Service, error) {  // ADD CONFIG
 	//инициализация grpc, http, роутинг, адаптеров, репозиториев, кафка, коннекторов к другим микросервисам,
-	conn, err := db.NewPostgres("postgres", "12345", "localhost", "13500", "postgres")
+	conn, err := db.NewPostgres("postgres", "123", "localhost", "5432", "db")
     if err != nil {
         log.Fatalf("Error : %v", err)
     }
