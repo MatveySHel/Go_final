@@ -2,7 +2,6 @@ package app
 
 import (
 	"context"
-
 	"github.com/MatveyShel/Go_final/hotels/domain"
 )
 

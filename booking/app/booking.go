@@ -2,19 +2,20 @@ package app
 
 import (
 	"context"
-
 	"github.com/MatveyShel/Go_final/booking/domain"
 )
 
 type Service struct{
 	repo Repository
 	msger RpcMessager
+	KafkaProducer Producer
 }
 
-func NewService(repo Repository, msger RpcMessager) *Service {
+func NewService(repo Repository, msger RpcMessager, kafkaProducer Producer) *Service {
 	return &Service{
 		repo : repo,
 		msger : msger,
+		KafkaProducer: kafkaProducer,
 	}
 }
 

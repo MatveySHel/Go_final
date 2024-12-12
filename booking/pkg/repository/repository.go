@@ -40,7 +40,6 @@ func (r *Repository) CreateNewBooking(ctx context.Context, booking domain.Bookin
 }
 
 func (r *Repository) GetClientBookingList(ctx context.Context, client string) (*[]domain.Booking, error) {
-    
     query := `
         SELECT * FROM bookings WHERE client = $1
     `

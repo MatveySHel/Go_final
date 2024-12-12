@@ -21,7 +21,7 @@ func NewHotelService() *HotelService {
 
 func (a *HotelService) Init(ctx context.Context) (*app.Service, error) {  // ADD CONFIG
 	//инициализация grpc, http, роутинг, адаптеров, репозиториев, кафка, коннекторов к другим микросервисам,
-	conn, err := db.NewPostgres("postgres", "123", "localhost", "5432", "db")
+	conn, err := db.NewPostgres("postgre", "123", "localhost", "5432", "hotels")
     if err != nil {
         log.Fatalf("Error : %v", err)
     }
