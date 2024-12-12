@@ -21,8 +21,11 @@ require (
 	github.com/jackc/pgx/v4 v4.10.1 // indirect
 	github.com/jackc/pgx/v5 v5.7.1 // indirect
 	github.com/jackc/puddle v1.1.3 // indirect
+	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/oapi-codegen/runtime v1.1.1 // indirect
+	github.com/pierrec/lz4/v4 v4.1.15 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/segmentio/kafka-go v0.4.47 // indirect
 	golang.org/x/crypto v0.27.0 // indirect
 	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/sys v0.25.0 // indirect

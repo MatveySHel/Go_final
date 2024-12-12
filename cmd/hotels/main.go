@@ -7,7 +7,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/MatveyShel/Go_final/hotels/ini"
+	"github.com/MatveyShel/Go_final/hotels/pkg/ini"
 	"github.com/MatveyShel/Go_final/hotels/pkg/api"
 	"github.com/MatveyShel/Go_final/pkg/pb"
 	"google.golang.org/grpc"
