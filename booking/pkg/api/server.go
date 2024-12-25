@@ -7,7 +7,9 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/MatveyShel/Go_final/booking/app"
 	"github.com/MatveyShel/Go_final/booking/domain"
 	"github.com/MatveyShel/Go_final/booking/pkg/msger"
@@ -37,21 +39,30 @@ type ConfirmResponse struct {
 
 func (a *BookingServer) Init(ctx context.Context) error {  // ADD CONFIG
 	//инициализация grpc, http, роутинг, адаптеров, репозиториев, кафка, коннекторов к другим микросервисам,
-	
+	err := godotenv.Load()
+    if err != nil {
+        log.Fatal("Error loading .env file")
+    }
 	//инициализация postgres
-	psotgresConn, err := db.NewPostgres("postgre", "123", "localhost", "6432", "booking")
+	DB_USER := os.Getenv("BOOKING_DB_USER")
+	DB_PASSWORD := os.Getenv("BOOKING_DB_PASSWORD")
+	DB_HOST := os.Getenv("BOOKING_DB_HOST")
+	DB_PORT := os.Getenv("BOOKING_DB_PORT")
+	DB_NAME := os.Getenv("BOOKING_DB_NAME")
+	time.Sleep(2 * time.Second) //Ждем пока развернется постгря
+	psotgresConn, err := db.NewPostgres(DB_USER, DB_PASSWORD , DB_HOST, DB_PORT, DB_NAME)
     if err != nil {
         log.Fatalf("Error : %v", err)
     }
 	repo := repository.NewRepository(psotgresConn)
 
 
-	kafkaBroker := "0.0.0.0:9092"
+	kafkaBroker := os.Getenv("BROKER_ADDR")
 	kafkaTopic := "notifications"
 	kafkaProducer := kafka.NewProducer([]string{kafkaBroker}, kafkaTopic)
 
 	//инициализация grpc  client
-	grpcConn, err := grpc.NewClient("0.0.0.0:8081", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	grpcConn, err := grpc.NewClient(os.Getenv("HOTEL_SERVER_ADDR"), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}

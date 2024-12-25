@@ -4,11 +4,18 @@ import (
 	"context"
 	"log/slog"
 	"net/http"
+	"os"
+	"log"
 
+	"github.com/joho/godotenv"
 	"github.com/MatveyShel/Go_final/booking/pkg/api"
 )
 
 func main() {
+	err := godotenv.Load()
+    if err != nil {
+        log.Fatal("Error loading .env file")
+    }
 	bookingServer := api.NewBookingServer()
 
 	bookingServer.Init(context.Background())
@@ -19,7 +26,7 @@ func main() {
 
 	s := &http.Server{
 		Handler: h,
-		Addr:    "0.0.0.0:8082",
+		Addr:    os.Getenv("BOOKING_SERVICE_ADDR"),
 	}
 
 	if err := s.ListenAndServe(); err != nil {

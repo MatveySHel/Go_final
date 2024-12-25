@@ -6,7 +6,9 @@ import (
 	"log/slog"
 	"net"
 	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/MatveyShel/Go_final/hotels/pkg/ini"
 	"github.com/MatveyShel/Go_final/hotels/pkg/api"
 	"github.com/MatveyShel/Go_final/pkg/pb"
@@ -15,6 +17,11 @@ import (
 )
 
 func main() {
+
+	err := godotenv.Load()
+    if err != nil {
+        log.Fatal("Error loading .env file")
+    }
 	// SERVICE
 	hotelService := ini.NewHotelService()
 
@@ -24,9 +31,7 @@ func main() {
 	
 
 	// GRCP Server
-	// addr := os.Getenv("SERVER_ADDR")
-	addr := "0.0.0.0:8081"
-	
+	addr := os.Getenv("HOTEL_SERVER_ADDR")
 	// Creating a TCP socket.
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
@@ -57,7 +62,7 @@ func main() {
 
 	s := &http.Server{
 		Handler: h,
-		Addr:    "0.0.0.0:8080",
+		Addr:    os.Getenv("HOTEL_SERVICE_ADDR"),
 	}
 
 	if err := s.ListenAndServe(); err != nil {
