@@ -99,6 +99,15 @@ services:
     networks:
       - app-network
 
+  telegram-bot:
+    build:
+      context: .
+      dockerfile: ./api/telegram_bot/Dockerfile
+    env_file:
+      - .env
+    networks:
+      - app-network
+
 
 volumes:
   booking-db-data:

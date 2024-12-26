@@ -7,6 +7,7 @@ import (
   "os"
   "os/signal"
   "syscall"
+  "strconv"
 
   "github.com/joho/godotenv"
   "github.com/MatveyShel/Go_final/notification/kafka"
@@ -21,8 +22,12 @@ func main() {
   broker := os.Getenv("BROKER_ADDR")
   topic := "notifications"
   groupID := "notification-group"
-  botToken := "7674387305:AAGnV_nVZ2E2g3Q6R6aE1_lDz1-AsTgmsaM"
-  var chatID int64 = 852361534
+  botToken := os.Getenv("TELEGRAM_BOT_TOKEN_NOTIFICATIONS")
+  chat := os.Getenv("TELEGRAM_CHAT")
+  chatID, err  := strconv.ParseInt(chat, 10, 64) 
+  if err!=nil {
+    log.Println("Ошибка преобразования:", err)
+  }
 
   consumer, err := kafka.NewKafkaConsumer(broker, topic, groupID, botToken, chatID)
   if err != nil {
